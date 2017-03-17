@@ -20,11 +20,9 @@ public:
 	//Umnojenie
 	TInteger& operator*= (const TInteger&obj);
 	TInteger& operator*= (const long long int val);
-	TInteger& operator * (const long long int val);
 	//Delenie
 	TInteger& operator /= (const TInteger &obj);
 	TInteger& operator /= (const long long int val);
-	TInteger& operator / (const long long int val);
 	TInteger operator % (const TInteger &obj);
 	TInteger operator % (const long long int val);
 	//Sravnenie pt.1
