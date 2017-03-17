@@ -19,19 +19,11 @@ TInteger::TInteger()
 }
 TInteger::TInteger(const long long  val)
 {
-	try
+	if (checkexc(val))
 	{
-		checkexc(val);
 		Value = val;
 	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-		Value = 0;
-	}
-	
 }
-
 int TInteger::operator = (const long long int val)
 {
 	if (checkexc(val))
