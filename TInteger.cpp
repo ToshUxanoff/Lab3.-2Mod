@@ -24,85 +24,88 @@ TInteger::TInteger(const long long  val)
 		Value = val;
 	}
 }
-int TInteger::operator = (const long long int val)
+
+TInteger& TInteger::operator = (const long long int val)
 {
 	if (checkexc(val))
 	{
 		Value = val;
 	}
-	return Value;
+	return *this;
 }
-int TInteger::operator = (const TInteger &obj)
+TInteger& TInteger::operator = (const TInteger &obj)
 {  
 	Value = obj.Value;
-	return Value;
+	return *this;
 }
-int TInteger::operator +=(const TInteger & obj)
+TInteger& TInteger::operator +=(const TInteger & obj)
 {
 	if (checkexc(((long long int)Value + obj.Value)))
 	{
 		Value += obj.Value;
 	}
-	return Value;
+	return *this;
 }
-int TInteger::operator+=(const long long int val)
+TInteger& TInteger::operator+=(const long long int val)
 {
 	if (checkexc((long long int)Value + val))
 	{
 		Value += (val);
 	}
-	return Value;
+	return *this;
 }
-int TInteger::operator -=(const TInteger &obj)
+TInteger& TInteger::operator -=(const TInteger &obj)
 {
 	if (checkexc((long long int)Value - obj.Value))
 	{
 		Value -= obj.Value;
 	}
-	return Value;
+	return *this;
 }
-int TInteger::operator -=(const long long int val)
+TInteger& TInteger::operator -=(const long long int val)
 {
 	if (checkexc((long long int)Value - val))
 	{
 		Value -= val;
 	}
-	return Value;
+	return *this;
 }
-int TInteger::operator *=(const TInteger &obj)
+TInteger& TInteger::operator *=(const TInteger &obj)
 {
 	if (checkexc((long long int)Value * obj.Value))
 	{
 		Value *= obj.Value;
 	}
-	return Value;
+	return *this;
 }
-int TInteger::operator *=(const long long int val)
+TInteger& TInteger::operator *=(const long long int val)
 {
 	if (checkexc((long long int)Value * val))
 	{
 		Value *= val;
 	}
-	return Value;
+	return *this;
 
 }
-int TInteger::operator /=(const TInteger& obj)
+TInteger& TInteger::operator /=(const TInteger& obj)
 {
 	Value /= obj.Value;
-	return Value;
+	return *this;
 }
-int TInteger::operator /=(const long long int val)
+TInteger& TInteger::operator /=(const long long int val)
 {
 	Value /= val;
-	return Value;
+	return *this;
 }
-int TInteger::operator*(const long long int val)
+TInteger& TInteger::operator*(const long long int val)
 {
-	return Value *= val;
+	Value *= val;
+	return *this;
 }
-int TInteger::operator/(const long long int val)
+TInteger& TInteger::operator/(const long long int val)
 {
-	return Value /= val;
+	Value /= val;
+	return *this;
 }
 bool TInteger::operator ==(const TInteger &obj) const
 {
@@ -171,17 +174,13 @@ TInteger operator - (const TInteger & obj1, const TInteger &obj2)
 	Val1 -= obj2;
 	return Val1;
 }
-int TInteger::operator % (const TInteger &obj)
+TInteger TInteger::operator % (const TInteger &obj)
 {
-	int x = Value / obj.Value;
-	x*=obj.Value;
-	return Value - x;
+	return Value % obj.Value;
 }
-int TInteger::operator % (const long long int val)
+TInteger TInteger::operator % (const long long int val)
 {
-	int x = Value / val;
-	x *= val;
-	return Value - x;
+	return Value % val;
 }
 TInteger operator *(const TInteger & obj1, const TInteger & obj2)
 {
@@ -194,25 +193,27 @@ TInteger operator /(const TInteger& obj1, const TInteger& obj2)
 	return Val1 /= obj2;
 }
 
-int TInteger::operator++()
+TInteger& TInteger::operator++()
 {
 	Value++;
-	return Value;
+	return *this;
 }
-int TInteger::operator--()
+TInteger& TInteger::operator--()
 {
 	Value--;
-	return Value;
+	return *this;
 }
-int TInteger::operator++(int val)
+TInteger TInteger::operator++(int)
 {
-	++Value;
-	return Value;
+	TInteger tmp(*this);
+	operator++();
+	return tmp;
 }
-int TInteger::operator--(int val)
+TInteger TInteger::operator--(int)
 {
-	--Value;
-	return Value;
+	TInteger tmp(*this);
+	operator--();
+	return tmp;
 }
 std::ostream & operator<<(std::ostream &out, const TInteger & object)
 {
