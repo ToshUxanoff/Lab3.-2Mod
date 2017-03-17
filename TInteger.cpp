@@ -97,16 +97,6 @@ TInteger& TInteger::operator /=(const long long int val)
 	Value /= val;
 	return *this;
 }
-TInteger& TInteger::operator*(const long long int val)
-{
-	Value *= val;
-	return *this;
-}
-TInteger& TInteger::operator/(const long long int val)
-{
-	Value /= val;
-	return *this;
-}
 bool TInteger::operator ==(const TInteger &obj) const
 {
 	return (Value == obj.Value);
